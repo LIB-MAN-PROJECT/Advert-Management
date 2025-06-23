@@ -5,10 +5,10 @@
     "description": "A API to manage advertisements",
     "version": "1.0.0"
   },
-  "host": "http://localhost:3000",
+  "host": "https://advert-management.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api/auth/signup": {

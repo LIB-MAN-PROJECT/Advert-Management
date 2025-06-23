@@ -4,8 +4,8 @@ const doc={
     info: {title: "Advertisement Management API",
     description:"A API to manage advertisements"
 },
-host:"http://localhost:3000",
-schemes:["http"],
+host:"https://advert-management.onrender.com",
+schemes:["https"],
 }
 
 const outputFile= "./swagger-output.json";
