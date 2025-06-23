@@ -4,7 +4,7 @@ const doc={
     info: {title: "Advertisement Management API",
     description:"A API to manage advertisements"
 },
-host:"https://advert-management.onrender.com",
+host:"advert-management.onrender.com",
 schemes:["https"],
 components: {
     securitySchemes: {
