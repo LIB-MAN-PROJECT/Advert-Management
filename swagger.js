@@ -6,6 +6,16 @@ const doc={
 },
 host:"https://advert-management.onrender.com",
 schemes:["https"],
+components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
+  },
+//   security: [{ bearerAuth: [] }],
 }
 
 const outputFile= "./swagger-output.json";
