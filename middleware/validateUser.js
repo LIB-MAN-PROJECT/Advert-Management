@@ -4,7 +4,9 @@ const signupSchema = Joi.object({
   username: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
-  role: Joi.string().valid("vendor", "user").required()
+  role: Joi.string().valid("vendor", "user").required(),
+  confirmPassword:  Joi.string().valid(Joi.ref("password")).required(),
+  country: Joi.string().required(),
 });
 
 const validateSignup = (req, res, next) => {
