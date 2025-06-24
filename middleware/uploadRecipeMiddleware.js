@@ -6,6 +6,7 @@ const fileFilter = (req, file, cb) => {
   const allowedTypes = [
     "application/pdf",
     "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   ];
 
   if (allowedTypes.includes(file.mimetype)) {

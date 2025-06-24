@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../middleware/uploadMiddleware")
 const {
   postAdvert,
   getAdverts,
@@ -12,7 +13,6 @@ const {
   authenticate,
   authorizeVendor,
 } = require("../middleware/authMiddleware");
-const upload = require("../middleware/uploadMiddleware");
 const { validateAdvert } = require("../middleware/validateAdvert");
 const uploadRecipe = require("../middleware/uploadRecipeMiddleware");
 const { uploadRecipeFile } = require("../controllers/advertController");

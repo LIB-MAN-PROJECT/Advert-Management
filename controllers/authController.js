@@ -8,7 +8,7 @@ const { sendWelcomeEmail } = require("../utils/email");
 // Signup
 exports.signup = async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
+    const { username, email, password, confirmPassword, country, role } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -21,6 +21,8 @@ exports.signup = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      confirmPassword,
+      country,
       role: role || "user"  // optional role assignment
     });
 
@@ -52,7 +54,7 @@ exports.login = async (req, res) => {
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: "5d" }
+      // { expiresIn: "5d" }
     );
 
     res.status(200).json({
@@ -68,4 +70,4 @@ exports.login = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "Login failed", error: err.message });
   }
-};
+};

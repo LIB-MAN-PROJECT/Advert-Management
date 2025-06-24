@@ -30,6 +30,12 @@
                 "password": {
                   "example": "any"
                 },
+                "confirmPassword": {
+                  "example": "any"
+                },
+                "country": {
+                  "example": "any"
+                },
                 "role": {
                   "example": "any"
                 }
@@ -91,12 +97,12 @@
         "description": "",
         "parameters": [
           {
-            "name": "cooking_technique",
+            "name": "cookingTechnique",
             "in": "query",
             "type": "string"
           },
           {
-            "name": "recipe_name",
+            "name": "recipeName",
             "in": "query",
             "type": "string"
           },
@@ -124,7 +130,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "Authorization",
+            "name": "authorization",
             "in": "header",
             "type": "string"
           },
@@ -134,7 +140,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "recipe_name": {
+                "recipeName": {
                   "example": "any"
                 },
                 "description": {
@@ -143,16 +149,16 @@
                 "price": {
                   "example": "any"
                 },
-                "country_of_origin": {
+                "countryOfOrigin": {
                   "example": "any"
                 },
-                "course_type": {
+                "courseType": {
                   "example": "any"
                 },
-                "cooking_technique": {
+                "cookingTechnique": {
                   "example": "any"
                 },
-                "special_diet": {
+                "specialDiet": {
                   "example": "any"
                 }
               }
@@ -171,9 +177,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -216,7 +219,7 @@
             "type": "string"
           },
           {
-            "name": "Authorization",
+            "name": "authorization",
             "in": "header",
             "type": "string"
           },
@@ -269,7 +272,7 @@
             "type": "string"
           },
           {
-            "name": "Authorization",
+            "name": "authorization",
             "in": "header",
             "type": "string"
           }
@@ -304,7 +307,7 @@
             "type": "string"
           },
           {
-            "name": "Authorization",
+            "name": "authorization",
             "in": "header",
             "type": "string"
           }

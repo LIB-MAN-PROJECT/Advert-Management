@@ -1,17 +1,19 @@
 const mongoose = require("mongoose");
 
 const advertSchema = new mongoose.Schema({
-  recipe_name: String,
+  recipeName: String,
   description: String,
   price: Number,
-  country_of_origin: String,
-  course_type: String,
-  cooking_technique: String,
-  special_diet: String,
-  image: String, 
+  countryOfOrigin: String,
+  courseType: String,
+  cookingTechnique: String,
+  specialDiet: String,
+  imageUrl: String, 
+  imagePublicId: String,
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
+    required: true
   },
 recipeFile: {
   type: String // URL to the uploaded recipe file
