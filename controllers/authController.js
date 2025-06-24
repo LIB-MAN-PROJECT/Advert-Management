@@ -10,6 +10,10 @@ exports.signup = async (req, res) => {
   try {
     const { username, email, password, confirmPassword, country, role } = req.body;
 
+    if (password !== confirmPassword){
+      return res.status(400).json({message: "passwords do not match"});
+    }
+
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: "Email already registered" });
@@ -21,7 +25,6 @@ exports.signup = async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      confirmPassword,
       country,
       role: role || "user"  // optional role assignment
     });
@@ -70,4 +73,4 @@ exports.login = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "Login failed", error: err.message });
   }
-};
+};
