@@ -5,7 +5,6 @@ const signupSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
   role: Joi.string().valid("vendor", "user").required(),
-  confirmPassword:  Joi.string().valid(Joi.ref("password")).required(),
   country: Joi.string().required(),
 });
 
