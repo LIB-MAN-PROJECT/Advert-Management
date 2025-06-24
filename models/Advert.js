@@ -8,6 +8,8 @@ const advertSchema = new mongoose.Schema({
   courseType: String,
   cookingTechnique: String,
   specialDiet: String,
+  directions: String,
+  ingredients: String,
   imageUrl: String, 
   imagePublicId: String,
   createdBy: {

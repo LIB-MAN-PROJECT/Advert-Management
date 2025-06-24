@@ -9,6 +9,8 @@ const advertSchema = Joi.object({
   cookingTechnique: Joi.string().required(),
   specialDiet: Joi.string().required(),
   imageUrl: Joi.string().uri().required(),
+  directions: Joi.string().required(),
+  ingredients: Joi.string().required(),
 });
 
 const validateAdvert = (req, res, next) => {

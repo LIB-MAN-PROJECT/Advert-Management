@@ -22,6 +22,8 @@ exports.postAdvert = async (req, res) => {
       courseType: req.body.courseType,
       cookingTechnique: req.body.cookingTechnique,
       specialDiet: req.body.specialDiet,
+      ingredients: req.body.ingredient,
+      directions: req.body.directions,
       imageUrl: result.secure_url,  // Cloudinary image URL
       imagePublicId: result.public_id, // Useful for deleting later
       createdBy: req.user.id
