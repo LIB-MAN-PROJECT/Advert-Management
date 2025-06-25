@@ -232,7 +232,31 @@
             "schema": {
               "type": "object",
               "properties": {
-                "image": {
+                "recipeName": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "countryOfOrigin": {
+                  "example": "any"
+                },
+                "cookingTechnique": {
+                  "example": "any"
+                },
+                "specialDiet": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "ingredients": {
+                  "example": "any"
+                },
+                "directions": {
+                  "example": "any"
+                },
+                "courseType": {
                   "example": "any"
                 }
               }
@@ -240,8 +264,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Bad Request"
