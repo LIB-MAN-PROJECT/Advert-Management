@@ -26,19 +26,20 @@ exports.postAdvert = async (req, res) => {
       directions: req.body.directions,
       imageUrl: result.secure_url,  // Cloudinary image URL
       imagePublicId: result.public_id, // Useful for deleting later
-      createdBy: req.user.id
+      createdBy: req.user.id,
+      createdByUserName: req.user.username
     });
 
     const saved = await newAdvert.save();
     const populated = await saved.populate("createdBy", "username email");
-     res.status(201).json(populated);
+    res.status(201).json(populated);
   } catch (error) {
     console.error("Error in postAdvert", error);
     res.status(400).json({ message: "Failed to create advert", error: error.message || error });
   }
 };
 
-    
+
 
 // GET: All adverts (search & filter included)
 exports.getAdverts = async (req, res) => {
@@ -47,7 +48,7 @@ exports.getAdverts = async (req, res) => {
     const filter = {};
 
     if (cookingTechnique) filter.cookingTechnique = { $regex: cookingTechnique, $options: "i" };
-    if (recipeName) filter.recipeName ={recipeName, $options: "i"};
+    if (recipeName) filter.recipeName = { recipeName, $options: "i" };
     if (minPrice || maxPrice) filter.price = {};
     if (minPrice) filter.price.$gte = minPrice;
     if (maxPrice) filter.price.$lte = maxPrice;
@@ -70,6 +71,18 @@ exports.getAdvertById = async (req, res) => {
     res.status(500).json({ message: "Error fetching advert", error: err.message });
   }
 };
+
+//GET:Adverts by a specific User ID
+exports.getAdvertByUserId = async (req, res) => {
+  console.log("req.params.Id",req.params.id);
+  try {
+    const advert = await Advert.find({createdBy:req.params.id});
+    if(!advert) return res.status(404).json({message:"Advert not found"});
+    res.status(200).json({advert});
+  } catch (err) {
+    res.status(500).json({message:"Error fetching advert",error:err.message});
+  }
+}
 
 // PUT: Update advert (vendor only, must be owner)
 exports.updateAdvert = async (req, res) => {
@@ -99,7 +112,7 @@ exports.deleteAdvert = async (req, res) => {
     const advert = await Advert.findById(req.params.id);
     if (!advert) return res.status(404).json({ message: "Advert not found" });
 
-     // Ensure advert.vendor exists before comparing
+    // Ensure advert.vendor exists before comparing
     if (!advert.createdBy || advert.createdBy.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: "Not authorized to delete this advert" });
     }
@@ -127,7 +140,7 @@ exports.uploadRecipeFile = async (req, res) => {
 
     // Use Cloudinary upload_stream for non-images
     const uploadStream = cloudinary.uploader.upload_stream(
-      { resource_type: "raw" }, 
+      { resource_type: "raw" },
       async (error, result) => {
         if (error) return res.status(500).json({ error: error.message });
 
