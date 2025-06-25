@@ -17,7 +17,7 @@ const advertSchema = new mongoose.Schema({
     ref: "User",
     required: true
   },
-  UserName:{
+  username:{
     type: String
   },
 recipeFile: {
