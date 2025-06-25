@@ -331,16 +331,10 @@
         }
       }
     },
-    "/api/adverts/get-adverts/{id}": {
+    "/api/adverts/vendor/get-adverts": {
       "get": {
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
           {
             "name": "authorization",
             "in": "header",
