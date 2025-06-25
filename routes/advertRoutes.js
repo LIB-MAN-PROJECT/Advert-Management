@@ -7,6 +7,7 @@ const {
   getAdvertById,
   updateAdvert,
   deleteAdvert,
+  getAdvertByUserId
 } = require("../controllers/advertController");
 
 const {
@@ -54,5 +55,10 @@ router.post(
   uploadRecipe.single("recipe"), // 'recipe' is the form field name
   uploadRecipeFile
 );
+
+//get adverts by userId
+router.get("/vendor/get-recipes/:id",authenticate,authorizeVendor,
+// #swagger.security = [{ "bearerAuth": [] }]
+getAdvertByUserId);
 
 module.exports = router;
