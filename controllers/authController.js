@@ -8,7 +8,7 @@ const { sendWelcomeEmail } = require("../utils/email");
 // Signup
 exports.signup = async (req, res) => {
   try {
-    const { username, email, password, confirmPassword, country, role } = req.body;
+    const { username, email, password,country, role } = req.body;
 
 
 
