@@ -331,7 +331,7 @@
         }
       }
     },
-    "/api/adverts/vendor/get-recipes/{id}": {
+    "/api/adverts/get-adverts/{id}": {
       "get": {
         "description": "",
         "parameters": [
