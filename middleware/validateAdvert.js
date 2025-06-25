@@ -3,7 +3,7 @@ const Joi = require("joi");
 const advertSchema = Joi.object({
   recipeName: Joi.string().required(),
   description: Joi.string().required(),
-  price: Joi.number().positive().required(),
+  price: Joi.number().positive().min(0).required(),
   countryOfOrigin: Joi.string().required(),
   courseType: Joi.string().required(),
   cookingTechnique: Joi.string().required(),
