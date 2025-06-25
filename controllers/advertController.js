@@ -48,7 +48,7 @@ exports.getAdverts = async (req, res) => {
     const filter = {};
 
     if (cookingTechnique) filter.cookingTechnique = { $regex: cookingTechnique, $options: "i" };
-    if (recipeName) filter.recipeName = { recipeName, $options: "i" };
+    if (recipeName) filter.recipeName = {$regex: recipeName, $options: "i" };
     if (minPrice || maxPrice) filter.price = {};
     if (minPrice) filter.price.$gte = minPrice;
     if (maxPrice) filter.price.$lte = maxPrice;
@@ -74,10 +74,11 @@ exports.getAdvertById = async (req, res) => {
 
 //GET:Adverts by a specific User ID
 exports.getAdvertByUserId = async (req, res) => {
-  console.log("req.params.Id",req.params.id);
+  console.log("req.user.id",req.user.id);
   try {
-    const advert = await Advert.find({createdBy:req.params.id});
+    const advert = await Advert.find({createdBy:req.user.id});
     if(!advert) return res.status(404).json({message:"Advert not found"});
+   
     res.status(200).json({advert});
   } catch (err) {
     res.status(500).json({message:"Error fetching advert",error:err.message});
