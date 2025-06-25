@@ -31,8 +31,8 @@ exports.postAdvert = async (req, res) => {
     });
 
     const saved = await newAdvert.save();
-    const populated = await saved.populate("createdBy", "username email");
-    res.status(201).json(populated);
+    // const populated = await saved.populate("createdBy", "username email");
+    res.status(201).json(saved);
   } catch (error) {
     console.error("Error in postAdvert", error);
     res.status(400).json({ message: "Failed to create advert", error: error.message || error });
@@ -63,7 +63,7 @@ exports.getAdverts = async (req, res) => {
 // GET: Single advert by ID
 exports.getAdvertById = async (req, res) => {
   try {
-    const advert = await Advert.findById(req.params.id).populate("createdBy", "username email");
+    const advert = await Advert.findById(req.params.id)
     if (!advert) return res.status(404).json({ message: "Advert not found" });
 
     res.status(200).json(advert);
@@ -87,6 +87,7 @@ exports.getAdvertByUserId = async (req, res) => {
 
 // PUT: Update advert (vendor only, must be owner)
 exports.updateAdvert = async (req, res) => {
+  const{recipeName,description,countryOfOrigin,cookingTechnique,specialDiet,price,ingredients,directions,courseType}=req.body
   try {
     const advert = await Advert.findById(req.params.id);
     if (!advert) return res.status(404).json({ message: "Advert not found" });
@@ -95,13 +96,35 @@ exports.updateAdvert = async (req, res) => {
       return res.status(403).json({ message: "You can only update your own advert" });
     }
 
-    const updatedFields = req.body;
-    if (req.file) {
-      updatedFields.image = req.file.path;
-    }
+    if(req.file){
+      if(advert.imagePublicId){
+        await cloudinary.uploader.destroy(advert.imagePublicId);
+      }
+      // `req.file.path` is the URL, `req.file.filename` is the publicId from multer-storage-cloudinary
 
-    const updatedAdvert = await Advert.findByIdAndUpdate(req.params.id, updatedFields, { new: true });
-    res.status(200).json({ message: "Advert updated", updatedAdvert });
+      imageUrl=req.file.path
+      console.log("imageurl",imageUrl);
+      imagePublicId=req.file.filename;
+      console.log("publicid",imagePublicId);
+    } 
+
+    advert.recipeName= recipeName || advert.recipeName;
+    advert.description= description || advert.description;
+    advert.price= price || advert.price;
+    advert.countryOfOrigin= countryOfOrigin||advert.countryOfOrigin;
+    advert.courseType = courseType || advert.courseType;
+    advert.cookingTechnique = cookingTechnique || advert.cookingTechnique;
+    advert.specialDiet = specialDiet || advert.specialDiet;
+    advert.ingredients = ingredients || advert.ingredients;
+    advert.directions = directions || advert.directions;
+    advert.imageUrl = imageUrl || advert.imageUrl;
+    advert.imagePublicId= imagePublicId || advert.imagePublicId;
+    advert.createdBy= req.user.id;
+    advert.username = req.user.username;
+
+    await advert.save()
+    res.status(201).json({message:"Updated Successfully", advert})
+
   } catch (err) {
     res.status(500).json({ message: "Error updating advert", error: err.message });
   }
