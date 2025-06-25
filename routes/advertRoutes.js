@@ -57,7 +57,7 @@ router.post(
 );
 
 //get adverts by userId
-router.get("/vendor/get-recipes/:id",authenticate,authorizeVendor,
+router.get("/get-adverts/:id",authenticate,authorizeVendor,
 // #swagger.security = [{ "bearerAuth": [] }]
 getAdvertByUserId);
 
