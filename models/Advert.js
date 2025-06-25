@@ -17,9 +17,21 @@ const advertSchema = new mongoose.Schema({
     ref: "User",
     required: true
   },
+  createdByUserName:{
+    type: String
+  },
 recipeFile: {
   type: String // URL to the uploaded recipe file
-}
+},
+createdAt:{
+    type:Date,
+    immutable:true,
+    default: Date.now()
+  },
+  updatedAt:{
+    type:Date,
+    default: Date.now()
+  }
 
 }, { timestamps: true });
 
