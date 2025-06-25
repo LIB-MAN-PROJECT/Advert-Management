@@ -28,9 +28,13 @@ exports.signup = async (req, res) => {
     });
 
     await user.save();
-await sendWelcomeEmail(email, username);
+    const sendEmail= await sendWelcomeEmail(email, username);
+    
+    const message =sendEmail
+    ? `User crested successfully. A welcome email has been sent to ${email}`
+    :`User created successfully`;
 
-res.status(201).json({ message: "User created successfully" });
+    res.status(201).json({message});
 
 
   } catch (err) {
