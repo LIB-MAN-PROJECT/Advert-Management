@@ -27,7 +27,7 @@ exports.postAdvert = async (req, res) => {
       imageUrl: result.secure_url,  // Cloudinary image URL
       imagePublicId: result.public_id, // Useful for deleting later
       createdBy: req.user.id,
-      createdByUserName: req.user.username
+      username: req.user.username
     });
 
     const saved = await newAdvert.save();
