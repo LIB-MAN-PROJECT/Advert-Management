@@ -24,6 +24,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ["vendor", "user"],
     default: "user"
+  },
+  createdAt:{
+    type:Date,
+    immutable:true,
+    default: () => Date.now()
+  },
+  updatedAt:{
+    type:Date,
+    default: Date.now()
   }
 });
 
