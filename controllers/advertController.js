@@ -87,7 +87,7 @@ exports.getAdvertByUserId = async (req, res) => {
 
 // PUT: Update advert (vendor only, must be owner)
 exports.updateAdvert = async (req, res) => {
-  const{recipeName,description,countryOfOrigin,cookingTechnique,specialDiet,price,ingredients,directions,courseType}=req.body
+  const{recipeName,description,countryOfOrigin,cookingTechnique,specialDiet,price,ingredient,directions,courseType}=req.body
   try {
     const advert = await Advert.findById(req.params.id);
     if (!advert) return res.status(404).json({ message: "Advert not found" });
@@ -115,7 +115,7 @@ exports.updateAdvert = async (req, res) => {
     advert.courseType = courseType || advert.courseType;
     advert.cookingTechnique = cookingTechnique || advert.cookingTechnique;
     advert.specialDiet = specialDiet || advert.specialDiet;
-    advert.ingredients = ingredients || advert.ingredients;
+    advert.ingredient = ingredients || advert.ingredient;
     advert.directions = directions || advert.directions;
     advert.imageUrl = imageUrl || advert.imageUrl;
     advert.imagePublicId= imagePublicId || advert.imagePublicId;
