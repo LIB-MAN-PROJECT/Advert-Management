@@ -1,0 +1,23 @@
+"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWI0ODY4ZDBjZmVjYWU5YzVmNGM5MiIsInJvbGUiOiJ2ZW5kb3IiLCJpYXQiOjE3NTA4MTMwMzN9.LGZ7A1dDhGVrwrnQUDyYluUMR9ABM9FnocjkWk3s5ls",
+    "user": {
+        "id": "685b4868d0cfecae9c5f4c92",
+        "username": "QiuBee",
+        "email": "quibee@gmail.com",
+        "role": "vendor"
+    }
+
+    {
+  "username": "Obito",
+  "email": "Obito@gmail.com",
+  "password": "333333",
+  "country": "Ghana",
+  "role": "vendor"
+}
+
+"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWI1ODY5MjcyNTg5NjJkYTE0MzkwYiIsInJvbGUiOiJ2ZW5kb3IiLCJpYXQiOjE3NTA4MTY5MzF9.MllgTkOxG9ju7Y92bfx-Ko5Sp2G1RPivX4xEOZKImII",
+    "user": {
+        "id": "685b586927258962da14390b",
+        "username": "Obito",
+        "email": "obito@gmail.com",
+        "role": "vendor"
+    }

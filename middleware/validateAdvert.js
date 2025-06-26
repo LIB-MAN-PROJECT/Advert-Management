@@ -8,7 +8,7 @@ const advertSchema = Joi.object({
   courseType: Joi.string().required(),
   cookingTechnique: Joi.string().required(),
   specialDiet: Joi.string().required(),
-  imageUrl: Joi.string().uri().required(),
+  // imageUrl: Joi.uri().required(),
   directions: Joi.string().required(),
   ingredients: Joi.string().required(),
 });
