@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
-
+const getMessage= require("./welcomeEmailtemplate")
 dotenv.config(); // Load your .env
 
 // transporter setup (using Gmail or Mailtrap, see below)
@@ -14,12 +14,10 @@ const transporter = nodemailer.createTransport({
 
 const sendWelcomeEmail = async (toEmail, username) => {
   const mailOptions = {
-    from: `"Advert App" <${process.env.EMAIL_USER}>`,
+    from: `"Code Feast" <${process.env.EMAIL_USER}>`,
     to: toEmail,
     subject: "Welcome to Code Feast ",
-    html: `<h2>Hello ${username}!</h2>
-           <p>Welcome to the Code Feast App for food enthusiasts, chefs and recipe books. We're glad to have you on board!</p>
-           <p>Happy posting </p>`
+    html: getMessage(username)
   };
 
   try {
