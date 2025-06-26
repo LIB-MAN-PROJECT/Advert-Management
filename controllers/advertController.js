@@ -115,7 +115,7 @@ exports.updateAdvert = async (req, res) => {
     advert.courseType = courseType || advert.courseType;
     advert.cookingTechnique = cookingTechnique || advert.cookingTechnique;
     advert.specialDiet = specialDiet || advert.specialDiet;
-    advert.ingredient = ingredients || advert.ingredient;
+    advert.ingredient = ingredient || advert.ingredient;
     advert.directions = directions || advert.directions;
     advert.imageUrl = imageUrl || advert.imageUrl;
     advert.imagePublicId= imagePublicId || advert.imagePublicId;
